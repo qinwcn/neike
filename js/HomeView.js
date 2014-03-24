@@ -1,4 +1,4 @@
-﻿var HomeView = function(store) {
+var HomeView = function(store) {
  
     this.initialize = function() {
         // Define a div wrapper for the view. The div wrapper is used to attach events.
@@ -37,15 +37,18 @@
 		window.filterIds="";
 		store.findByNameWithFilter(window.keyWord, window.filterIds, function(items) {
 			$('.item-list').html(HomeView.liTemplate(items));
+			self.iscrollcontent = new IScroll('.scroll',{tap:true});
 		});
 	};
 	
 	
 	this.findByClickFilterMenu=function(e){
+		var self=this;
 		window.keyWord="";
 		window.filterIds=$(e.target).attr('filter_id');
 		store.findByNameWithFilter(window.keyWord, window.filterIds, function(items) {
 			$('.item-list').html(HomeView.liTemplate(items));
+			self.iscrollcontent = new IScroll('.scroll',{tap:true});
 		});
 	};
 
@@ -53,14 +56,12 @@
 	this.findByName = function() {
 	    var self=this;
 		var keyword=$('.search-key').val();
-		window.filterIds = new Array();
-		$(".filter_items>li.selected").each(function(i,v){
-				window.filterIds[i]=$(v).attr('filter_id');
-		});
+		window.filterIds = "";
 		if(keyword.trim().length>0){
 			window.keyWord=keyword;
 			store.findByNameWithFilter(window.keyWord,window.filterIds, function(items) {
 				$('.item-list').html(HomeView.liTemplate(items));
+				self.iscrollcontent = new IScroll('.scroll',{tap:true});
 			});
 		}
 	};
