@@ -7,8 +7,8 @@
 		this.el.on('keyup', '.search-key', this.findByName);
 		this.el.on('click','.search-key',function(){$('.search-key').val("");});
 		this.el.on('click', '.showmenu', function(){self.snap().open('left');} );
-		this.el.on('click', '.showsetting', function(){self.snap().open('right');});
 		this.el.on('tap', '.home_menu', this.findByClickMenu);
+		this.el.on('tap', '.filter_menu', this.findByClickFilterMenu);
 		this.el.on('tap', '.home_list_item',function(e){
 				window.location.hash=$(e.target).attr('url');
 		});
@@ -34,16 +34,20 @@
 	    //update keyword
 		var self=this;
 	    window.keyWord=$(e.target).html();
-		window.filterIds = new Array();
-		$(".filter_items>li.selected").each(function(i,v){
-				window.filterIds[i]=$(v).attr('filter_id');
-		});
-		
+		window.filterIds="";
 		store.findByNameWithFilter(window.keyWord, window.filterIds, function(items) {
 			$('.item-list').html(HomeView.liTemplate(items));
 		});
 	};
 	
+	
+	this.findByClickFilterMenu=function(e){
+		window.keyWord="";
+		window.filterIds=$(e.target).attr('filter_id');
+		store.findByNameWithFilter(window.keyWord, window.filterIds, function(items) {
+			$('.item-list').html(HomeView.liTemplate(items));
+		});
+	};
 
 	
 	this.findByName = function() {
@@ -65,7 +69,8 @@
 		var self=this;
 		if(!self.snapper){
 			self.snapper = new Snap({
-                element: document.getElementById('content')
+                element: document.getElementById('content'),
+				disable: 'right'
             });
 		}
 		return self.snapper;

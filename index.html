@@ -10,24 +10,15 @@
 <script id="home-menu-tpl" type="text/x-handlebars-template">
 	<div class="snap-drawers">
 		<div class="snap-drawer snap-drawer-left" id="scroll-menu">
+			<ul class="filter_items"></ul>
 			<ul>
 				<li><h4>>>中医病名</h4></li>
-				<li><a href="#" class="home_menu">全部</a></li>
 				{{#.}}
 				<li><a href="#" class="home_menu">{{this.c_name}}</a></li>
 				{{/.}}
 			</ul>
 			
 		</div>
-		<div class="snap-drawer snap-drawer-right">
-			  <ul class="table-view ">
-				<li class="table-view-cell table-view-divider">数据过滤</li>
-				<li><ul class="filter_items">
-						<li class="table-view-cell" filter_id="1">30个考试重点 <span class="icon icon-check red"></span></li>
-						<li class="table-view-cell">Item 2</li>
-				</ul></li>
-			  </ul>
-			</div>
 	</div>
 </script>
 
@@ -41,20 +32,19 @@
 
 <script id="menu-li-tpl" type="text/x-handlebars-template">
     {{#.}}
-    <li><a href="#items/{{this.id}}" class="sub-menu-item">{{this.name}}</a></li>
+    <li><a href="#items/{{this.id}}" class="sub-menu-item">{{this.name}}  {{this.cat1}} {{this.cat2}}</a></li>
     {{/.}}
 </script>
 
 <script id="filterMenu-li-tpl" type="text/x-handlebars-template">
 {{#.}}
-<li class="table-view-cell" filter_id="{{this.id}}">{{this.title}}</span></li>
+<li><a href="#" filter_id="{{this.id}}" class="filter_menu">{{this.title}}</a></li>
 {{/.}}
 </script>
 
 
 <script id="header-tpl" type="text/x-handlebars-template">
 	  <a class="icon icon-bars pull-left showmenu"></a>
-	  <a class="icon icon-gear pull-right showsetting"></a>
 	  <h1 class="title">内科系统</h1>
 	  <div><input class='search-key' type="search" value="病名/证型/辩证要点/方剂"/></div>
 </script>
@@ -77,7 +67,7 @@
 
 <script id="item-li-tpl" type="text/x-handlebars-template">
     {{#.}}
-    <li class="table-view-cell home_list_item" url="#items/{{this.id}}">{{this.name}}  {{this.belonging}} <span class="icon icon-right-nav pull-right"></span></li>
+    <li class="table-view-cell home_list_item" url="#items/{{this.id}}">{{this.name}}  {{this.cat1}} {{this.cat2}}</li>
     {{/.}}
 </script>
 

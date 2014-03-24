@@ -7,7 +7,6 @@ var SideMenuView = function (store,where){
 	  {
 	     case "home":
 		 this.el = $('<div/>');
-		 this.el.on('click', '.filter_items', this.refreshFilterItems);
 		 break;
 		 
 		 case "sub":
@@ -62,13 +61,7 @@ var SideMenuView = function (store,where){
 		return this;
 	};
 	
-	this.refreshFilterItems = function(e){
-		if($(e.target).hasClass("selected")){
-			$(e.target).removeClass("selected");
-		}else{
-			$(e.target).addClass("selected");
-		}
-	};
+
 	
 	this.initialize();
 }
