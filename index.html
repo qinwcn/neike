@@ -10,8 +10,10 @@
 <script id="home-menu-tpl" type="text/x-handlebars-template">
 	<div class="snap-drawers">
 		<div class="snap-drawer snap-drawer-left" id="scroll-menu">
-			<ul class="filter_items"></ul>
 			<ul>
+			    <li>
+					<ul class="filter_items"></ul>
+				</li>
 				<li><h4>>>中医病名</h4></li>
 				{{#.}}
 				<li><a href="#" class="home_menu">{{this.c_name}}</a></li>
